@@ -20,13 +20,11 @@ public class PMT extends Function {
             throw new SQLException("Necesita 3 parámetros" + args());
         }
         try {
-            double tasa_interes = value_double(0);
-            int numero_periodos = value_int(1);
-            double valor_prestamo = value_double(2);
-            double v = (1+(tasa_interes/12));
-            double t = (-(numero_periodos/12)*12);
-            double resultante=(valor_prestamo*(tasa_interes/12))/(1-Math.pow(v, t));
-            result(resultante);
+                double j = value_double(0)/ 12;
+                int n = value_int(1);
+                double monto = value_double(2);
+                double pmt = monto*((j*Math.pow((1+j),n))/(Math.pow((1+j),n) - 1));
+                result(pmt);
         }catch (Exception e)
         {
             result(-1);

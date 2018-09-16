@@ -37,6 +37,8 @@ public class ExternalFunctions {
         Function.create(connection, HEX2DEC.class.getSimpleName(), new HEX2DEC());
         Function.create(connection, REPEAT.class.getSimpleName(), new REPEAT());
         Function.create(connection, PMT.class.getSimpleName(), new PMT());
+        Function.create(connection, COMPARESTRING.class.getSimpleName(), new COMPARESTRING());
+        
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  
         
@@ -91,8 +93,14 @@ public class ExternalFunctions {
            }*/
           
           //PARA EL PMT
-          ResultSet rs= statement.executeQuery("select PMT(10 ,12 ,100000) as b");
+          ResultSet rs = statement.executeQuery("select PMT(0.08,10,10000) as b");
           System.out.println("Valor= "+ rs.getDouble(1));
+          
+          //PARA EL COMPARESTRING
+         /* ResultSet rs= statement.executeQuery("select COMPARESTRING('holaa', 'hola') as b");
+          System.out.println("STRING 1 MENOR QUE EL 2, RETORNO -1. SI AMBOS SON IGUALES RETORNO 0. SI EL STRING 2 ES MENOR QUE EL 1 RETORNO 1");
+          
+          System.out.println("Valor: "+ rs.getInt(1));*/
             
             
         }catch(SQLException e)
